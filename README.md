@@ -5,11 +5,11 @@ The Unifi controllers run's as a Container Instace in Azure als uses a Azure fil
 
 ## Deployment
 ### PowerShell
-We can deploy the Docker Container with PowerShell. Unfortunately due to an [issue](https://github.com/Azure/azure-cli/issues/6235) with the --ports and --protocol options it is not possible to add both the TCP and UDP ports to the container. This makes PowerShell only partially useful to deploy the container.
+We can deploy the Docker Container with PowerShell. Unfortunately due to an [issue](https://github.com/Azure/azure-cli/issues/6235) with the *--ports* and *--protocol* options it is not possible to add both the TCP and UDP ports to the container. This makes PowerShell only partially useful to deploy the container.
 
-''''PowerShell
+```PowerShell
 az container create --resource-group %ResourceGroupName% --os-type Linux --name %UnitName% --image jacobalberty/unifi:stable --ip-address public --ports 3478 6789 8080 8443 8843 --protocol TCP --azure-file-volume-account-name %StarageAccountName% --azure-file-volume-account-key %Secret% --azure-file-volume-share-name %ShareName% --azure-file-volume-mount-path /unifi/ --log-analytics-workspace %LogAnalyticsWorkspaceName% --log-analytics-workspace-key %LogAnalyticsKey% --environment-variables RUNAS_UID0=false
-''''
+```
 ### Portal
 Do to missing options in the portal it is not possible at this time to configure it manually.
 The option to mount a storage account is not currently present in the wizard.
