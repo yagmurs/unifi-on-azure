@@ -23,7 +23,7 @@ It is possible to do the deployment with an ARM template. You can find the one w
 #### Thing you need to do yourself
 The deployment takes care of almost everything. There are still two things that need to be done by hand.
 1. Add your own certificates to the fileshare in /unifi/cert.
-2. Configure the controlle itself. Either by restoring from an existing back-up. Or by following the wizard. That's up to you.
+2. Configure the controller itself. Either by restoring from an existing back-up. Or by following the wizard. That's up to you.
 
 ### Deploy to Azure
 If you like to deploy it directly to Azure, please use the link below. This wil create the storage account, docker image, an link the two together.
