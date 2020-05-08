@@ -4,6 +4,7 @@ We created an ready to deploy Unifi controller for Azure. This will install the 
 The Unifi controllers run's as a Container Instace in Azure als uses a Azure file share to store it's configuration data.
 
 ## Deployment
+Azure provides us with multiple ways to deploy resource. Using [ARM templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/) works best for the resources we need.
 ### PowerShell
 We can deploy the Docker Container with PowerShell. Unfortunately due to an [issue](https://github.com/Azure/azure-cli/issues/6235) with the *--ports* and *--protocol* options it is not possible to add both the TCP and UDP ports to the container. This makes PowerShell only partially useful to deploy the container.
 
@@ -31,11 +32,8 @@ If you like to deploy it directly to Azure, please use the link below. This wil 
 If you have any comments of suggestions please feel free to [add them](https://github.com/Syndicate-Consulting/unifi-on-azure/issues).
 
 ## External Links
-Jacob Alberty's Docker image for the Unifi Controller.  This is the image we use for the container.
-https://github.com/jacobalberty/unifi-docker
+[Jacob Alberty's Docker image for the Unifi Controller.](https://github.com/jacobalberty/unifi-docker)
 
-Microsoft Doc's page for the az container command.
-https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest
+[Microsoft Doc's page for the az container command.](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest)
 
-Microsoft Doc's page for mounting an Azure file share inside a Container Instance.
-https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files
+[Microsoft Doc's page for mounting an Azure file share inside a Container Instance.](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files)
