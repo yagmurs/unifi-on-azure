@@ -3,7 +3,7 @@ Note: we are commiting the required files in the upcoming days. Still a work in 
 
 ## Introduction
 We created an ready to deploy Unifi controller for Azure. This will install the [Jacob Alberty](https://github.com/jacobalberty/unifi-docker) docker build on Azure. Almost no configuration is needed.
-The Unifi controllers run's as a Container Instace in Azure als uses a Azure file share to store it's configuration data.
+The Unifi controllers run's as a Container Instace in Azure and uses a Azure file share to store it's configuration data.
 
 ## Deployment
 Azure provides us with multiple ways to deploy resource. Using [ARM templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/) works best for the resources we need.
@@ -14,7 +14,7 @@ We can deploy the Docker Container with PowerShell. Unfortunately due to an [iss
 az container create --resource-group %ResourceGroupName% --os-type Linux --name %UnitName% --image jacobalberty/unifi:stable --ip-address public --ports 3478 6789 8080 8443 8843 --protocol TCP --azure-file-volume-account-name %StarageAccountName% --azure-file-volume-account-key %Secret% --azure-file-volume-share-name %ShareName% --azure-file-volume-mount-path /unifi/ --log-analytics-workspace %LogAnalyticsWorkspaceName% --log-analytics-workspace-key %LogAnalyticsKey% --environment-variables RUNAS_UID0=false
 ```
 #### Portal
-Do to missing options in the portal it is not possible at this time to configure it manually.
+Due to missing options in the portal it is not possible at this time to configure it manually.
 The option to mount a storage account is not currently present in the wizard.
 
 #### ARM Template
