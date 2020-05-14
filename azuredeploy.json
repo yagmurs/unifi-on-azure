@@ -38,7 +38,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('StorageAccountName'), 'default')]",
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
-                // "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', concat(parameters('StorageAccountName'), '/default/unifi'))]"
             ],
             "properties": {
                 "containers": [
