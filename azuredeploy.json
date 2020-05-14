@@ -15,13 +15,13 @@
             }
         },
         "location": {
-            "type": "string",
+            "type": "String",
             "metadata": {
             "description": "Location for all resources."
             }
         },
         "resourceTags": {
-            "type": "object",
+            "type": "String",
             "metadata": {
             "description": "Tag values."
             }
