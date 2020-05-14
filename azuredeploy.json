@@ -19,12 +19,6 @@
             "metadata": {
             "description": "Location for all resources."
             }
-        },
-        "resourceTags": {
-            "type": "String",
-            "metadata": {
-            "description": "Tag values."
-            }
         }
     },
     "variables": {
@@ -36,7 +30,6 @@
             "apiVersion": "2018-10-01",
             "name": "[parameters('ContainerGroupsName')]",
             "location": "[parameters('location')]",
-            "tags": "[parameters('resourceTags')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('StorageAccountName'), 'default')]",
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
@@ -129,7 +122,6 @@
             "apiVersion": "2019-06-01",
             "name": "[parameters('StorageAccountName')]",
             "location": "[parameters('location')]",
-            "tags": "[parameters('resourceTags')]",
             "sku": {
                 "name": "Standard_LRS",
                 "tier": "Standard"
