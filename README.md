@@ -21,6 +21,8 @@ Browse to the web interface by navigating to __https:// *ip* :8443__
 
 ![alt text](https://github.com/Syndicate-Consulting/unifi-on-azure/blob/master/Unifi%20Docker%20Web.jpg?raw=true)
 
+And enjoy your new controller.
+
 ### Deploy to Azure
 If you like to deploy it directly to Azure, please use the link below. This will create the storage account, docker image, an link the two together.
 
