@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "ContainerGroupsName": {
-            "type": "String"
+            "type": "String",
             "metadata": {
             "description": "Name for the container and group."
             }
