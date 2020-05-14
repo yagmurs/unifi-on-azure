@@ -11,11 +11,5 @@
     "location": {
       "value": "[resourceGroup().location]"
     },
-    "resourceTags": {
-      "value": {
-        "Environment": "Production",
-        "Project": "Unifi"
-      }
-    }
   }
 }
