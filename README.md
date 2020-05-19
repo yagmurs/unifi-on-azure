@@ -13,11 +13,11 @@ The deployment takes care of almost everything. There are still two things that 
 2. Configure the controller itself. Either by restoring from an existing back-up. Or by following the wizard. That's up to you.
 
 #### Accessing the controller
-After the deployment is complete you can locate the containers IP.
+After the deployment is complete you need to find the containers IP.
 
 ![alt text](https://raw.githubusercontent.com/Syndicate-Consulting/unifi-on-azure/master/images/docker%20ip.jpg?raw=true)
 
-Browse to the web interface by navigating to __https:// *ip* :8443__
+Browse to the web interface by navigating to https://*x.x.x.x*:8443
 
 ![alt text](https://github.com/Syndicate-Consulting/unifi-on-azure/blob/master/images/unifi%20web.jpg?raw=true)
 
