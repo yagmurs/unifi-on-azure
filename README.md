@@ -15,11 +15,11 @@ The deployment takes care of almost everything. There are still two things that 
 #### Accessing the controller
 After the deployment is complete you can locate the containers IP.
 
-![alt text](https://raw.githubusercontent.com/Syndicate-Consulting/unifi-on-azure/master/Unifi%20Docker%20IP.jpg?raw=true)
+![alt text](https://raw.githubusercontent.com/Syndicate-Consulting/unifi-on-azure/master/images/Unifi%20Docker%20IP.jpg?raw=true)
 
 Browse to the web interface by navigating to __https:// *ip* :8443__
 
-![alt text](https://github.com/Syndicate-Consulting/unifi-on-azure/blob/master/Unifi%20Docker%20Web.jpg?raw=true)
+![alt text](https://github.com/Syndicate-Consulting/unifi-on-azure/blob/master/images/Unifi%20Docker%20Web.jpg?raw=true)
 
 And enjoy your new controller.
 
