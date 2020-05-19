@@ -1,0 +1,192 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ContainerGroupsName": {
+            "defaultValue": "unifi",
+            "type": "String"
+        },
+        "StorageAccountName": {
+            "defaultValue": "[uniqueString( utcNow('u') )]",
+            "type": "String"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+            "description": "Location for all resources."
+            }
+        },
+        "resourceTags": {
+            "type": "object",
+            "defaultValue": {
+                "Environment": "Production",
+                "Project": "Unifi"
+            }
+        }
+    },
+    "variables": {
+        "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('ContainerGroupsName')]",
+            "location": "[parameters('location')]",
+            "tags": "[parameters('resourceTags')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('StorageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+                // "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', concat(parameters('StorageAccountName'), '/default/unifi'))]"
+            ],
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[parameters('ContainerGroupsName')]",
+                        "properties": {
+                            "image": "jacobalberty/unifi:stable",
+                            "ports": [
+                                {
+                                    "protocol": "UDP",
+                                    "port": 3478
+                                },
+                                {
+                                    "protocol": "TCP",
+                                    "port": 6789
+                                },
+                                {
+                                    "protocol": "TCP",
+                                    "port": 8080
+                                },
+                                {
+                                    "protocol": "TCP",
+                                    "port": 8443
+                                },
+                                {
+                                    "protocol": "TCP",
+                                    "port": 8880
+                                }
+                            ],
+                            "environmentVariables": [],
+                            "resources": {
+                                "requests": {
+                                    "memoryInGB": 1.5,
+                                    "cpu": 1
+                                }
+                            },
+                            "volumeMounts": [
+                                {
+                                    "name": "azurefile",
+                                    "mountPath": "/unifi/"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "restartPolicy": "Always",
+                "ipAddress": {
+                    "ports": [
+                        {
+                            "protocol": "UDP",
+                            "port": 3478
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 6789
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 8080
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 8443
+                        },
+                        {
+                            "protocol": "TCP",
+                            "port": 8880
+                        }
+                    ],
+                    "type": "Public"
+                },
+                "osType": "Linux",
+                "volumes": [
+                    {
+                        "name": "azurefile",
+                        "azureFile": {
+                            "shareName": "unifi",
+                            "storageAccountName": "[parameters('StorageAccountName')]",
+                            "storageAccountKey": "[listKeys(variables('storageAccountId'), '2019-04-01').keys[0].value]"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "name": "[parameters('StorageAccountName')]",
+            "location": "[parameters('location')]",
+            "tags": "[parameters('resourceTags')]",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "largeFileSharesState": "Disabled",
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(parameters('StorageAccountName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(parameters('StorageAccountName'), '/default/unifi')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('StorageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+            ],
+            "properties": {
+                "shareQuota": 1
+            }
+        }
+    ]
+}
