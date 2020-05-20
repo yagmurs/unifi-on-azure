@@ -19,7 +19,7 @@ After the deployment is complete you need to find the containers IP.
 
 Browse to the web interface by navigating to https://*x.x.x.x*:8443
 
-![Unifi Controller Webinterface](https://github.com/Syndicate-Consulting/unifi-on-azure/blob/master/images/unifi%20web.jpg?raw=true)
+![Unifi Controller Webinterface](https://raw.githubusercontent.com/Syndicate-Consulting/unifi-on-azure/master/images/unifi%20web.jpg?raw=true)
 
 And enjoy your new controller.
 
