@@ -23,10 +23,15 @@ Browse to the web interface by navigating to https://*x.x.x.x*:8443
 
 And enjoy your new controller.
 
-### Deploy to Azure
+## Deploy to Azure
 If you like to deploy it directly to Azure, please use the link below. This will create the storage account, docker image, an link the two together.
 
 [![Deploy to Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/deploybutton.png)](https://azuredeploy.net/)
+
+#### I’m lazy, can you make it easier for me
+Sure, if you want to put a minimum amount of effort into this grab the *template.json* file from the [azure templates directory](https://github.com/Syndicate-Consulting/unifi-on-azure/tree/master/azure%20templates) and copy-paste the content into a new template file in Azure. Save it, and click deploy.
+
+![Template](https://raw.githubusercontent.com/Syndicate-Consulting/unifi-on-azure/master/images/azure%20template.jpg?raw=true)
 
 ## Suggestions
 If you have any comments of suggestions please feel free to [add them](https://github.com/Syndicate-Consulting/unifi-on-azure/issues).
