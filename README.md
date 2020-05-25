@@ -36,6 +36,8 @@ Sure, if you want to put a minimum amount of effort into this grab the *template
 ## Suggestions
 If you have any comments of suggestions please feel free to [add them](https://github.com/Syndicate-Consulting/unifi-on-azure/issues).
 
+Please keep in mind that Azure Container Instances are not available in all regions. You need to deploy the controller to a supported region.
+
 ## External Links
 [Jacob Alberty's Docker image for the Unifi Controller.](https://github.com/jacobalberty/unifi-docker)
 
