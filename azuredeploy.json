@@ -40,6 +40,13 @@
             "metadata": {
                 "description": "this value will be the DNS name of the container."
             }
+        },
+        "imageFile": {
+            "type": "string",
+            "defaultValue": "jacobalberty/unifi:stable-6",
+            "metadata": {
+                "description": "Docker Hub image file https://hub.docker.com/r/jacobalberty/unifi"
+            }
         }
     },
     "variables": {
@@ -60,7 +67,7 @@
                     {
                         "name": "[parameters('ContainerName')]",
                         "properties": {
-                            "image": "jacobalberty/unifi:stable",
+                            "image": "[parameters('imageFile')]",
                             "ports": [
                                 {
                                     "protocol": "UDP",
