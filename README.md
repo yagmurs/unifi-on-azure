@@ -27,7 +27,9 @@ And enjoy your new controller.
 ## Deploy to Azure
 If you like to deploy it directly to Azure, please use the link below. This will create the storage account, docker image, an link the two together.
 
-[![Deploy to Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/deploybutton.png)](https://azuredeploy.net/)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyagmurs%2Funifi-on-azure%2Fmaster%2Fazuredeploy.json)
+
+[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fyagmurs%2Funifi-on-azure%2Fmaster%2Fazuredeploy.json)
 
 #### I’m lazy, can you make it easier for me
 Sure, if you want to put a minimum amount of effort into this grab the *template.json* file from the [azure templates directory](https://github.com/Syndicate-Consulting/unifi-on-azure/tree/master/azure%20templates) and copy-paste the content into a new template file in Azure. Save it, and click deploy.

@@ -2,22 +2,43 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "ContainerGroupsName": {
+        "ContainerName": {
             "type": "String",
             "metadata": {
-            "description": "Name for the container and group."
+                "description": "Name for the container."
             }
         },
         "StorageAccountName": {
             "type": "String",
             "metadata": {
-            "description": "Storage Account Name will be auto generated."
+                "description": "Storage Account Name will be auto generated."
             }
         },
         "location": {
             "type": "String",
+            "defaultValue": "[resourceGroup().location]",
             "metadata": {
-            "description": "Location for all resources."
+                "description": "Location for all resources."
+            }
+        },
+        "numberCpuCores": {
+            "type": "String",
+            "defaultValue": "1",
+            "metadata": {
+                "description": "Container cpu core count between 1-4."
+            }
+        },
+        "memory": {
+            "type": "String",
+            "defaultValue": "0.5",
+            "metadata": {
+                "description": "Container memory between 0.5 to 16 GB."
+            }
+        },
+        "dnsNameLabel": {
+            "type": "String",
+            "metadata": {
+                "description": "this value will be the DNS name of the container."
             }
         }
     },
@@ -28,7 +49,7 @@
         {
             "type": "Microsoft.ContainerInstance/containerGroups",
             "apiVersion": "2018-10-01",
-            "name": "[parameters('ContainerGroupsName')]",
+            "name": "[parameters('ContainerName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('StorageAccountName'), 'default')]",
@@ -37,7 +58,7 @@
             "properties": {
                 "containers": [
                     {
-                        "name": "[parameters('ContainerGroupsName')]",
+                        "name": "[parameters('ContainerName')]",
                         "properties": {
                             "image": "jacobalberty/unifi:stable",
                             "ports": [
@@ -65,8 +86,8 @@
                             "environmentVariables": [],
                             "resources": {
                                 "requests": {
-                                    "memoryInGB": 1.5,
-                                    "cpu": 1
+                                    "memoryInGB": "[float(parameters('memory'))]",
+                                    "cpu": "[int(parameters('numberCpuCores'))]"
                                 }
                             },
                             "volumeMounts": [
@@ -102,7 +123,8 @@
                             "port": 8880
                         }
                     ],
-                    "type": "Public"
+                    "type": "Public",
+                    "dnsNameLabel": "[parameters('dnsNameLabel')]"
                 },
                 "osType": "Linux",
                 "volumes": [
